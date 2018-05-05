@@ -16,7 +16,8 @@
 		$stmt = $db->prepare('SELECT COUNT(*) FROM user WHERE email = ?');
 		$stmt->bind_param('s', $email);
 	}
-	else
+
+	if (isset($_POST ['nick']))
 	{
 		$nick = $_POST ['nick'];
 		$stmt = $db->prepare('SELECT COUNT(*) FROM user WHERE nick = ?');
