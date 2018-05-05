@@ -13,14 +13,14 @@
 	if (isset($_POST ['email']))
 	{
 		$email = $_POST ['email'];
-		$stmt = $db->prepare('SELECT COUNT(*) FROM user WHERE email = ?');
+		$stmt = $db->prepare('SELECT COUNT(*) FROM collaborator WHERE email = ?');
 		$stmt->bind_param('s', $email);
 	}
 
 	if (isset($_POST ['nick']))
 	{
 		$nick = $_POST ['nick'];
-		$stmt = $db->prepare('SELECT COUNT(*) FROM user WHERE nick = ?');
+		$stmt = $db->prepare('SELECT COUNT(*) FROM collaborator WHERE nick = ?');
 		$stmt->bind_param('s', $nick);
 	}
 
