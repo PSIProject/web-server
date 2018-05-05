@@ -5,7 +5,7 @@ CREATE TABLE collaborator (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nick NVARCHAR (25) NOT NULL,
     email NVARCHAR (30) NOT NULL,
-    name NVARCHAR (15) NOT NULL,
+    name NVARCHAR (25) NOT NULL,
     last_name NVARCHAR (15) NOT NULL,
     password NVARCHAR (64) NOT NULL
 );
@@ -44,7 +44,7 @@ CREATE TABLE task (
     finish_date DATE NOT NULL,
     state TINYINT UNSIGNED NOT NULL,
     delivery_description NVARCHAR (100) NOT NULL,
-    delivery NVARCHAR (50) NOT NULL,
+    delivery NVARCHAR (50) NULL,
     team_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (team_id) REFERENCES team (id)
 );
