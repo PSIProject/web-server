@@ -1,4 +1,10 @@
 <?php
+///////////////////////////////////////////////
+/// Sign up a user on the collobarator table
+/// is a POST scriipt.
+///
+/// If the register was succesfull return true.
+///////////////////////////////////////////////
 	require 'connect-db.inc';
 
 	$db = connect_db();
@@ -12,9 +18,8 @@
 	if (!$stmt->execute())
 		echo $db->error;
 	else
-		echo 'success';
+		echo 'ok';
 
 	$stmt->close();
 	$db->close();
-
 ?>
