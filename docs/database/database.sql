@@ -1,7 +1,7 @@
 CREATE DATABASE team_tasks;
 USE team_tasks;
 
-CREATE TABLE user (
+CREATE TABLE collaborator (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nick NVARCHAR (25) NOT NULL,
     email NVARCHAR (30) NOT NULL,
@@ -10,33 +10,33 @@ CREATE TABLE user (
     password NVARCHAR (64) NOT NULL
 );
 
-CREATE TABLE group (
+CREATE TABLE team (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR (50) NOT NULL
 );
 
 CREATE TABLE manager (
-    user_id INT UNSIGNED NOT NULL,
-    group_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (group_id) REFERENCES group (id)
+    collaborator_id INT UNSIGNED NOT NULL,
+    team_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (collaborator_id) REFERENCES collaborator (id),
+    FOREIGN KEY (team_id) REFERENCES team (id)
 );
 
-CREATE TABLE collaborator (
-    user_id INT UNSIGNED NOT NULL,
-    group_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (group_id) REFERENCES group (id)
+CREATE TABLE collaborate (
+    collaborator_id INT UNSIGNED NOT NULL,
+    team_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (collaborator_id) REFERENCES collaborator (id),
+    FOREIGN KEY (team_id) REFERENCES team (id)
 );
 
 CREATE TABLE goal (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR (50) NOT NULL,
-    group_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (group_id) REFERENCES group (id)
+    team_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (team_id) REFERENCES team (id)
 );
 
-CREATE TABLE activity (
+CREATE TABLE task (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR (50) NOT NULL,
     description NVARCHAR (100) NOT NULL,
@@ -45,22 +45,22 @@ CREATE TABLE activity (
     state TINYINT UNSIGNED NOT NULL,
     delivery_description NVARCHAR (100) NOT NULL,
     delivery NVARCHAR (50) NOT NULL,
-    group_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (group_id) REFERENCES group (id),=
+    team_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (team_id) REFERENCES team (id)
 );
 
 CREATE TABLE comment (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     message NVARCHAR (1000) NOT NULL,
-    user_id INT UNSIGNED NOT NULL,
-    activity_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (activity_id) REFERENCES activity (id)
+    collaborator_id INT UNSIGNED NOT NULL,
+    task_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (collaborator_id) REFERENCES collaborator (id),
+    FOREIGN KEY (task_id) REFERENCES task (id)
 );
 
 CREATE TABLE assigned_to (
-    user_id INT UNSIGNED NOT NULL,
-    activity_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (activity_id) REFERENCES activity (id)
+    collaborator_id INT UNSIGNED NOT NULL,
+    task_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (collaborator_id) REFERENCES collaborator (id),
+    FOREIGN KEY (task_id) REFERENCES task (id)
 );
