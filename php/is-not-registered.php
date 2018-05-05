@@ -26,8 +26,9 @@
 
 	$stmt->execute();
 	$stmt->bind_result($result);
+	$stmt->fetch();
 
-	if ($result == 0)
+	if ($result == '0')
 		echo 'true';
 	else
 		echo 'false';
