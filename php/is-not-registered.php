@@ -13,32 +13,23 @@
 	if (isset($_POST ['email']))
 	{
 		$email = $_POST ['email'];
-
 		$stmt = $db->prepare('SELECT COUNT(*) FROM user WHERE email = ?');
 		$stmt->bind_param('s', $email);
-		$stmt->execute();
-		$stmt->bind_result($result)
-
 	}
-
-	if (isset($_POST ['nick']))
+	else
 	{
 		$nick = $_POST ['nick'];
 		$stmt = $db->prepare('SELECT COUNT(*) FROM user WHERE nick = ?');
 		$stmt->bind_param('s', $nick);
-		$stmt->execute();
-		$stmt->bind_result($result)
 	}
 
-	if ($stmt->fetch())
-	{
-		if ($result == 0)
-			echo 'true';
-		else
-			echo 'false';
-	}
+	$stmt->execute();
+	$stmt->bind_result($result);
+
+	if ($result == 0)
+		echo 'true';
 	else
-		echo 'wrong data';
+		echo 'false';
 
 	$stmt->close ();
 	$db->close ();
