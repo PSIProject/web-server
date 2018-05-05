@@ -27,7 +27,7 @@
 	$stmt->execute();
 	$stmt->bind_result($result);
 
-	if ($result == 0)
+	if ($result == '0')
 		echo 'true';
 	else
 		echo 'false';
