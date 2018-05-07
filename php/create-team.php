@@ -1,6 +1,8 @@
 <?php
 	require 'connect-db.inc';
 
+	session_start();
+
 	$db = connect_db();
 	$name = $_POST ['name'];
 	$manager_id = $_SESSION ['user_id'];
@@ -19,7 +21,7 @@
 		$stmt->bind_param('si', $name, $manager_id);
 
 		if (!$stmt->execute())
-			echo $false;
+			echo 'false';
 		else
 			echo 'true';
 	}
