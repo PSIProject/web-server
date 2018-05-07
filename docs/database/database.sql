@@ -13,13 +13,8 @@ CREATE TABLE collaborator (
 CREATE TABLE team (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR (50) NOT NULL
-);
-
-CREATE TABLE manager (
-    collaborator_id INT UNSIGNED NOT NULL,
-    team_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (collaborator_id) REFERENCES collaborator (id),
-    FOREIGN KEY (team_id) REFERENCES team (id)
+    manager_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (manager_id) REFERENCES collaborator (id),
 );
 
 CREATE TABLE collaborate (
