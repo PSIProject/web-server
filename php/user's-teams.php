@@ -12,8 +12,7 @@
 	$db = connect_db();
 	$user_id = $_SESSION ['user_id'];
 
-	$stmt = $db->prepare('SELECT collaborate.team_id, team.name FROM collaborate JOIN team
-							ON collaborate.team_id = team.id WHERE collaborator_id = ?');
+	$stmt = $db->prepare('SELECT id, name FROM team WHERE manager_id = ?');
 	$stmt->bind_param('i', $user_id);
 	$stmt->execute();
 	$stmt->bind_result($team_id, $team_name);
@@ -29,10 +28,9 @@
 
 	}
 	$stmt->close ();
-
+	$stmt = $db->prepare('SELECT COUNT(*) FROM collaborate WHERE team_id = ?');
 	foreach ($teams as $team )
 	{
-		$stmt = $db->prepare('SELECT COUNT(*) FROM collaborate WHERE team_id = ?');
 		$stmt->bind_param('i', $team->id);
 		$stmt->execute();
 		$stmt->bind_result($team_members);
