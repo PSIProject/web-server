@@ -8,7 +8,7 @@
 	$stmt = $db->prepare('SELECT id FROM collaborator WHERE email = ? AND password = SHA2(?, 256)');
 	$stmt->bind_param('ss', $email, $password);
 	$stmt->execute();
-	$stmt->bind_result($id)
+	$stmt->bind_result($id);
 
 	if ($stmt->fetch())
 	{
