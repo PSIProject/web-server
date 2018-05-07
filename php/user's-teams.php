@@ -20,22 +20,25 @@
 
 	/// Store them in an array
     $teams = array();
-    for ($i = 0; $stmt->fetch(); $i++)
+	while ($stmt->fetch())
     {
-        $teams [$i] = new stdClass();
-        $teams [$i]->id = $team_id;
-        $teams [$i]->name = $team_name;
+        $team = new stdClass();
+        $team->id = $team_id;
+        $team->name = $team_name;
+		array_push($teams, $team);
 
-		$stmt->close ();
+	}
+	$stmt->close ();
 
+	foreach ($teams as $team )
+	{
 		$stmt = $db->prepare('SELECT COUNT(*) FROM collaborate WHERE team_id = ?');
-		$stmt->bind_param('i', $team_id);
+		$stmt->bind_param('i', $team->id);
 		$stmt->execute();
 		$stmt->bind_result($team_members);
 		$stmt->fetch();
-
-		$teams [$i]->members = $team_members;
-    }
+		$team->members = $team_members;
+	}
 
 	$stmt->close ();
 	$db->close ();
