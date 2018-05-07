@@ -9,8 +9,9 @@
 	$stmt->bind_param('si', $name, $manager_id);
 	$stmt->execute();
 	$stmt->bind_result($result);
+	$stmt->fetch();
 
-    if ($result == 0)
+    if ($result == '0')
 	{
 		$stmt->close ();
 
@@ -18,15 +19,12 @@
 		$stmt->bind_param('si', $name, $manager_id);
 
 		if (!$stmt->execute())
-			echo $db->error;
+			echo $false;
 		else
 			echo 'true';
 	}
     else
         echo 'already exist';
-
-	if (!$stmt->fetch())
-    	echo 'false';
 
 	$stmt->close ();
 	$db->close ();
