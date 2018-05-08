@@ -1,0 +1,20 @@
+<?php
+    require 'connect-db.inc';
+
+    /// Verify if the current user is member of the team
+    function isMemberOfTeam($user_id, $team_id)
+    {
+        $db = connect_db();
+
+        $stmt = $db->prepare('SELECT COUNT(*) FROM collaborate WHERE collaborator_id = ? AND team_id = ?');
+    	$stmt->bind_param('ii', $user_id, $team_id);
+    	$stmt->execute();
+    	$stmt->bind_result($result);
+        $stmt->fetch()
+
+        if($result == 1)
+            return true;
+        else
+            return false;
+    }
+?>
