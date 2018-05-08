@@ -1,6 +1,4 @@
 <?php
-    require 'connect-db.inc';
-
     /// Verify if the current user is member of the team
     function isMemberOfTeam($db, $user_id, $team_id)
     {

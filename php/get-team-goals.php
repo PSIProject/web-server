@@ -2,9 +2,8 @@
 ///////////////////////////////////////////////////////////
 /// Receive team's id and returns an array with the goal's
 /// goals. Each array element have:
-///
-/// id: goal's id
-/// name: goal's name
+/// *id: goal's id
+/// *name: goal's name
 ///
 /// Verify that goal belongs to the user before to get
 /// goals. If goal doesn't, it must an error message.
@@ -27,13 +26,12 @@
 		/// Store them in an array
 		$goals = array();
 		while ($stmt->fetch())
-		array_push($goals, array('id' => $goal_id, 'name' => $goal_name));
+			array_push($goals, array('id' => $goal_id, 'name' => $goal_name));
+
 		echo json_encode($goals);
+		$stmt->close ();
 	}
 	else
 		echo 'error';
-
-	$stmt->close ();
 	$db->close ();
-
 ?>
