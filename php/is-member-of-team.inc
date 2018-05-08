@@ -6,7 +6,7 @@
     	$stmt->bind_param('ii', $user_id, $team_id);
     	$stmt->execute();
     	$stmt->bind_result($result);
-        $stmt->fetch()
+        $stmt->fetch();
 
         if($result == '1')
             return true;
