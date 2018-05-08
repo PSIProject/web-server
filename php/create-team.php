@@ -47,6 +47,8 @@
 			$stmt->fetch();
 			$stmt->close();
 
+			$_SESSION ['team_id'] = $team_id;
+
 			$stmt = $db->prepare('INSERT INTO collaborate VALUES (?, ?)');
 			$stmt->bind_param('ii', $manager_id, $team_id);
 			$stmt->execute();

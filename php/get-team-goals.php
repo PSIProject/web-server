@@ -1,9 +1,10 @@
 <?php
 ///////////////////////////////////////////////////////////
-/// Receive team's id and returns an array with the goal's
-/// goals. Each array element have:
-/// *id: goal's id
-/// *name: goal's name
+/// Take team's id from $_SESSION and returns an array with
+/// the goal's goals. Each array element have:
+///
+///	id: goal's id
+/// name: goal's name
 ///
 /// Verify that goal belongs to the user before to get
 /// goals. If goal doesn't, it must an error message.
@@ -13,7 +14,7 @@
 	session_start();
 
 	$db = connect_db();
-	$team_id = $_POST ['team_id'];
+	$team_id =  $_SESSION ['team_id'];
 	$user_id = $_SESSION ['user_id'];
 
 	if (isMemberOfTeam($db, $user_id, $team_id))
