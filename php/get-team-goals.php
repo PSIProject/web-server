@@ -17,7 +17,7 @@
 	$team_id = $_POST ['team_id'];
 	$user_id = $_SESSION ['user_id'];
 
-	if (isMemberOfTeam ($user_id, $team_id))
+	if (isMemberOfTeam($db, $user_id, $team_id))
 	{
 		$stmt = $db->prepare('SELECT id, name FROM goal WHERE team_id = ?');
 		$stmt->bind_param('i', $team_id);
