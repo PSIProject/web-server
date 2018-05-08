@@ -10,7 +10,7 @@
 /// goals. If goal doesn't, it must an error message.
 //////////////////////////////////////////////////////////
 	require 'connect-db.inc';
-	require 'is-member-of-team.inc'
+	require 'is-member-of-team.inc';
 	session_start();
 
 	$db = connect_db();
