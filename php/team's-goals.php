@@ -1,6 +1,6 @@
 <?php
 ///////////////////////////////////////////////////////////
-/// Receive goal's id and returns an array with the goal's
+/// Receive team's id and returns an array with the goal's
 /// goals. Each array element have:
 ///
 /// id: goal's id
@@ -23,13 +23,8 @@
 	/// Store them in an array
     $goals = array();
 	while ($stmt->fetch())
-    {
-        $goal = new stdClass();
-        $goal>id = $goal_id;
-        $->name = $goal_name;
-		array_push($goals, $goal);
+		array_push($goals, array('id' => $goal_id, 'name' => $goal_name));
 
-	}
 
 	$stmt->close ();
 	$db->close ();
