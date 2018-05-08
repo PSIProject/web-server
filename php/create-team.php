@@ -50,8 +50,6 @@
 			$stmt = $db->prepare('INSERT INTO collaborate VALUES (?, ?)');
 			$stmt->bind_param('ii', $manager_id, $team_id);
 			$stmt->execute();
-			$stmt->bind_result($result);
-			$stmt->fetch();
 			echo 'true';
 		}
 	}
