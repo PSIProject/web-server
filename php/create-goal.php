@@ -26,11 +26,10 @@
 	$stmt->execute();
 	$stmt->bind_result($result);
 	$stmt->fetch();
+	$stmt->close();
 
 	if ($result == '0')
 	{
-		$stmt->close ();
-
 		$stmt = $db->prepare('INSERT INTO goal VALUES (NULL, ?, ?)');
 		$stmt->bind_param('si', $name, $team_id);
 
@@ -53,7 +52,6 @@
 	else
 		$response->status = 'already exists';
 
-	$stmt->close ();
     $db->close ();
 	echo json_encode($response);
 ?>
