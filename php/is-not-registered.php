@@ -9,6 +9,7 @@
 	require 'connect-db.inc';
 
 	$db = connect_db();
+	$response = new stdClass();
 
 	if (isset($_POST ['email']))
 	{
@@ -29,10 +30,11 @@
 	$stmt->fetch();
 
 	if ($result == '0')
-		echo 'true';
+		$response->status = 'true';
 	else
-		echo 'false';
+		$response->status = 'false';
 
+	echo json_encode($response);
 	$stmt->close ();
 	$db->close ();
 ?>

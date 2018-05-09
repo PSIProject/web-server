@@ -15,6 +15,7 @@
 
 	require 'connect-db.inc';
 	session_start();
+	$response = new stdClass();
 
 	$db = connect_db();
 	$name = $_POST ['name'];
@@ -35,13 +36,14 @@
 		$stmt->bind_param('si', $name, $team_id);
 
 		if (!$stmt->execute())
-			echo 'error';
+			$response->status = 'error';
 		else
-			echo 'ok';
+			$response->status = 'ok';
 	}
 	else
-		echo 'already exists';
+		$response->status = 'already exists';
 
 	$stmt->close ();
     $db->close ();
+	echo json_encode($response);
 ?>

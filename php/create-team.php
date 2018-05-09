@@ -9,14 +9,15 @@
 ///	team an take the id of the user from session
 ///	var.
 ///
-///	Return true, if the team is created, false
+///	Return ok, if the team is created, error
 /// for system errors or 'already exists' if
 ///	the user have another team with that name.
 ///////////////////////////////////////////////
 
 	require 'connect-db.inc';
-
+	
 	session_start();
+	$response = new stdClass();
 
 	$db = connect_db();
 	$name = $_POST ['name'];
@@ -36,7 +37,7 @@
 		$stmt->bind_param('si', $name, $manager_id);
 
 		if (!$stmt->execute())
-			echo 'false';
+			$response->status = 'error';
 		else
 		{
 			$stmt->close ();
@@ -52,12 +53,13 @@
 			$stmt = $db->prepare('INSERT INTO collaborate VALUES (?, ?)');
 			$stmt->bind_param('ii', $manager_id, $team_id);
 			$stmt->execute();
-			echo 'true';
+			$response->status = 'ok';
 		}
 	}
     else
-        echo 'already exist';
+        $response->status = 'already exist';
 
 	$stmt->close ();
 	$db->close ();
+	echo json_encode($response);
 ?>

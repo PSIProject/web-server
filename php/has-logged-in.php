@@ -1,7 +1,11 @@
 <?php
 	session_start();
+	$response = new stdClass();
+
 	if (isset($_SESSION ['user_id']))
-		echo 'true';
+		$response->status = 'true';
 	else
-		echo 'false';
+		$response->status = 'false';
+
+	echo json_encode($response);
 ?>

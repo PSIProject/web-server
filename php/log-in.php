@@ -2,6 +2,7 @@
 	require 'connect-db.inc';
 
 	$db = connect_db();
+	$response = new stdClass();
 	$email = $_POST ['email'];
 	$password = $_POST ['password'];
 
@@ -14,11 +15,12 @@
 	{
 		session_start();
 		$_SESSION ['user_id'] = $id;
-		echo 'ok';
+		$response->status = 'ok';
 	}
 	else
-		echo 'wrong data';
+		$response->status = 'error';
 
+	echo json_encode($response);
 	$stmt->close ();
 	$db->close ();
 ?>
