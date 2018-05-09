@@ -13,9 +13,8 @@
 /// for system errors or 'already exists' if
 ///	the user have another team with that name.
 ///////////////////////////////////////////////
-
 	require 'connect-db.inc';
-	
+
 	session_start();
 	$response = new stdClass();
 

@@ -1,12 +1,11 @@
+<?php
 ////////////////////////////////////////////
 /// Store team's id in $_SESSION. It's sent
 /// by client using POST method.
 ////////////////////////////////////////////
-
-<?php
     require 'connect-db.inc';
     require 'is-member-of-team.inc';
-    
+
     session_start();
     $response = new stdClass();
 
