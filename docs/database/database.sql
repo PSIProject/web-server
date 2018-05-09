@@ -38,9 +38,9 @@ CREATE TABLE task (
     init_date DATE NOT NULL,
     finish_date DATE NOT NULL,
     state TINYINT UNSIGNED NOT NULL,
+    goal_id INT UNSIGNED NOT NULL,
     delivery_description NVARCHAR (100) NOT NULL,
     delivery NVARCHAR (50) NULL,
-    goal_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (goal_id) REFERENCES goal (id)
 );
 
