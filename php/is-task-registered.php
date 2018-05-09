@@ -17,7 +17,7 @@
 
 	$db = connect_db();
 	$task_name = $_POST ['task_name'];
-	$task_name = $_SESSION ['goal_id'];
+	$goal_id = $_SESSION ['goal_id'];
 
     $stmt = $db->prepare('SELECT COUNT(*) FROM task WHERE name = ? AND goal_id = ?');
     $stmt->bind_param('si', $task_name, $goal_id);
@@ -26,9 +26,9 @@
     $stmt->fetch ();
 
 	if ($result == '0')
-			$response->status = 'true';
-	else
 		$response->status = 'false';
+	else
+		$response->status = 'true';
 
 	echo json_encode($response);
 	$stmt->close ();
