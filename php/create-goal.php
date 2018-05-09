@@ -38,6 +38,14 @@
 			$response->status = 'error';
 		else
 		{
+			$stmt->close ();
+
+			$stmt= $db->prepare('SELECT LAST_INSERT_ID()');
+	        $stmt->execute();
+			$stmt->bind_result($goal_id);
+			$stmt->fetch();
+			$stmt->close();
+
 			$response->status = 'ok';
 			$_SESSION ['goal_id'] = $goal_id;
 		}
