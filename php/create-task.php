@@ -22,8 +22,8 @@
 
 
 	$stmt = $db->prepare('INSERT INTO task VALUES (NULL, ?, ?, ?, ?, 1, ?, ?, NULL)');
-	$stmt->bind_param('sssss', $task->name,  $task->description, $task->init_date, $task->finish_date,
-	$task->goal_id, $task->delivery_description);
+	$stmt->bind_param('ssssis', $task->name,  $task->description, $task->init_date, $task->finish_date,
+								$task->goal_id, $task->delivery_description);
 
 	if (!$stmt->execute())
 		$response->status = 'error';
