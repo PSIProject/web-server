@@ -16,10 +16,11 @@
 	$response = new stdClass();
 
 	$db = connect_db();
-	$task = json_decode($_POST ['task_data']);
+	$task_name = $_POST ['task_name'];
+	$task_name = $_SESSION ['goal_id'];
 
-    $stmt = $db->prepare('SELECT COUNT(*) FROM task WHERE name = ?');
-    $stmt->bind_param('s', $task->name);
+    $stmt = $db->prepare('SELECT COUNT(*) FROM task WHERE name = ? AND goal_id = ?');
+    $stmt->bind_param('si', $task_name, $goal_id);
     $stmt->execute();
     $stmt->bind_result($result);
     $stmt->fetch ();
