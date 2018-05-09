@@ -12,7 +12,6 @@
 /// for system errors or 'already exists' if
 ///	the user have another goal with that name.
 ///////////////////////////////////////////////
-
 	require 'connect-db.inc';
 	session_start();
 	$response = new stdClass();
@@ -38,7 +37,10 @@
 		if (!$stmt->execute())
 			$response->status = 'error';
 		else
+		{
 			$response->status = 'ok';
+			$_SESSION ['goal_id'] = $goal_id;
+		}
 	}
 	else
 		$response->status = 'already exists';

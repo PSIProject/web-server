@@ -40,6 +40,5 @@
 
 	$stmt->close ();
 	$db->close ();
-
 	echo json_encode($teams);
 ?>

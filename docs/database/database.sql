@@ -12,9 +12,9 @@ CREATE TABLE collaborator (
 
 CREATE TABLE team (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name NVARCHAR (50) NOT NULL
+    name NVARCHAR (50) NOT NULL,
     manager_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (manager_id) REFERENCES collaborator (id),
+    FOREIGN KEY (manager_id) REFERENCES collaborator (id)
 );
 
 CREATE TABLE collaborate (
@@ -41,7 +41,7 @@ CREATE TABLE task (
     delivery_description NVARCHAR (100) NOT NULL,
     delivery NVARCHAR (50) NULL,
     goal_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (team_id) REFERENCES team (id)
+    FOREIGN KEY (goal_id) REFERENCES goal (id)
 );
 
 CREATE TABLE comment (
