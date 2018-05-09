@@ -14,7 +14,7 @@
 	{
 		session_start();
 		$_SESSION ['user_id'] = $id;
-		echo 'true';
+		echo 'ok';
 	}
 	else
 		echo 'wrong data';

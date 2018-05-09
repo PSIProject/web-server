@@ -40,7 +40,7 @@ CREATE TABLE task (
     state TINYINT UNSIGNED NOT NULL,
     delivery_description NVARCHAR (100) NOT NULL,
     delivery NVARCHAR (50) NULL,
-    team_id INT UNSIGNED NOT NULL,
+    goal_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (team_id) REFERENCES team (id)
 );
 
