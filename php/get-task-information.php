@@ -20,10 +20,14 @@
 	$stmt->bind_result($task_name, $task_description, $task_delivery_description, $task_finish_date);
 
 	/// Store them in an array
-	$task = array();
 	if ($stmt->fetch())
-		array_push($tasks, array('name' => $task_name, 'description' => $task_description,
-								'delivery_description' => $task_delivery_description, 'finish_date' => $task_finish_date));
+	{
+		$task = new stdClass();
+		$task->name = $task_name;
+		$task->description = $task_description;
+		$task->delivery_description = $task_delivery_description;
+		$task->finish_date = $task_finish_date;
+	}
 
 	echo json_encode($task);
 	$stmt->close ();
