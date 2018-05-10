@@ -21,7 +21,7 @@
 
     if ($result == '1')
     {
-        $_SESSION ['task_id'] = $tas_id;
+        $_SESSION ['task_id'] = $task_id;
         $response->status = 'ok';
     }
     else
