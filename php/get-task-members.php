@@ -18,7 +18,6 @@
 	$stmt->execute();
 	$stmt->bind_result($collaborator_id, $collaborator_nick);
 
-	/// Store them in an array
 	$collaborators = array();
 	while ($stmt->fetch())
 		array_push($collaborators, array('id' => $$collaborator_id, 'name' => $$collaborator_nick));

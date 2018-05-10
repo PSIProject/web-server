@@ -19,7 +19,7 @@
 	$stmt->bind_result($result);
     $stmt->fetch();
 
-    if($result == '1')
+    if ($result == '1')
         $response->status = 'true';
     else
         $response->status = 'false';
