@@ -28,7 +28,17 @@
 	if (!$stmt->execute())
 		$response->status = 'error';
 	else
+	{
+		$stmt->close ();
+
+		$stmt= $db->prepare('SELECT LAST_INSERT_ID()');
+		$stmt->execute();
+		$stmt->bind_result($task_id);
+		$stmt->fetch();
+
 		$response->status = 'ok';
+		$_SESSION ['task_id'] = $task_id;
+	}
 
 	echo json_encode($response);
 	$stmt->close ();
