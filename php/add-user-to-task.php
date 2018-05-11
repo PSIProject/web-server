@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////
 	require 'connect-db.inc';
 	require 'is-member-of-task.inc';
+	require 'is-member-of-team.inc';
 	session_start ();
 
 	$db = connect_db();

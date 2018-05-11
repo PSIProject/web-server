@@ -12,5 +12,7 @@
             return true;
         else
             return false;
+
+        $stmt->close();
     }
 ?>
