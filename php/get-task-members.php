@@ -20,9 +20,9 @@
 
 	$collaborators = array();
 	while ($stmt->fetch())
-		array_push($collaborators, array('id' => $$collaborator_id, 'name' => $$collaborator_nick));
+		array_push($collaborators, array('id' => $collaborator_id, 'name' => $collaborator_nick));
 
-	echo json_encode($$collaborators);
+	echo json_encode($collaborators);
 	$stmt->close ();
 	$db->close ();
 ?>
