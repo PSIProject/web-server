@@ -47,6 +47,7 @@ CREATE TABLE task (
 CREATE TABLE comment (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     message NVARCHAR (1000) NOT NULL,
+    publication_date DATE NOT NULL,
     collaborator_id INT UNSIGNED NOT NULL,
     task_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (collaborator_id) REFERENCES collaborator (id),
