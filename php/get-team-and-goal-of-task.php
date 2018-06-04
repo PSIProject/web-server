@@ -11,7 +11,7 @@
 	$stmt = $db->prepare('SELECT COUNT(*) FROM assigned_to WHERE collaborator_id = ? AND task_id = ?');
 	$stmt->bind_param('ii', $user_id, $task_id);
 	$stmt->execute();
-	$stmt->bind_param($has_assigned);
+	$stmt->bind_result($has_assigned);
 	$stmt->fetch();
 	$stmt->close();
 
